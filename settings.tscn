@@ -1,0 +1,145 @@
+[gd_scene load_steps=16 format=3 uid="uid://b32umoiohaee1"]
+
+[ext_resource type="Script" path="res://settings.gd" id="1_kg2pb"]
+[ext_resource type="Texture2D" uid="uid://ce7d4ssxc41wm" path="res://backgrounds/settings.png" id="2_xeg2e"]
+[ext_resource type="Texture2D" uid="uid://ddu3xt5j72g2s" path="res://textures/back_next.png" id="3_ax65l"]
+[ext_resource type="Script" path="res://texture_button.gd" id="4_sd30a"]
+[ext_resource type="Texture2D" uid="uid://c4weu70gqpo81" path="res://textures/controls.png" id="5_4j3eu"]
+[ext_resource type="Texture2D" uid="uid://djlrvevbgk18a" path="res://textures/control pressed.png" id="6_pr36q"]
+[ext_resource type="Texture2D" uid="uid://qylp3j4jbftj" path="res://textures/ins.png" id="6_ukeui"]
+[ext_resource type="Texture2D" uid="uid://dddl2dtdbdudo" path="res://textures/ins pressed true.png" id="7_v5hkm"]
+[ext_resource type="Texture2D" uid="uid://c0cqtdgg178ci" path="res://textures/15.png" id="8_p8dug"]
+[ext_resource type="AudioStream" uid="uid://ctr72axtv4ku7" path="res://tracks/mainmenu_hover.mp3" id="9_hbiv5"]
+[ext_resource type="Script" path="res://master_volume.gd" id="9_t5oae"]
+[ext_resource type="Script" path="res://sound_effects.gd" id="10_7msy5"]
+[ext_resource type="AudioStream" uid="uid://b2xtumoyg2gn5" path="res://tracks/mainmenu_click.mp3" id="10_nvxiv"]
+[ext_resource type="Texture2D" uid="uid://bbp3ul0p3kbsj" path="res://textures/16.png" id="10_rdgqt"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qvnk1"]
+texture = ExtResource("2_xeg2e")
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 257.0
+offset_top = 257.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kg2pb")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -253.0
+offset_top = -264.0
+offset_right = 4.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_qvnk1")
+
+[node name="TextureButton" type="TextureButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.148
+anchor_top = 0.935
+anchor_right = 0.148
+anchor_bottom = 0.935
+offset_left = -73.496
+offset_top = -47.6201
+offset_right = 72.504
+offset_bottom = 47.3799
+texture_normal = ExtResource("3_ax65l")
+texture_pressed = ExtResource("3_ax65l")
+texture_hover = ExtResource("3_ax65l")
+stretch_mode = 0
+script = ExtResource("4_sd30a")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureButton2" type="TextureButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.498
+anchor_top = 0.751
+anchor_right = 0.498
+anchor_bottom = 0.751
+offset_left = -237.696
+offset_top = -224.15
+offset_right = 1238.3
+offset_bottom = 176.85
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.32, 0.320001)
+texture_normal = ExtResource("5_4j3eu")
+texture_pressed = ExtResource("6_pr36q")
+texture_hover = ExtResource("6_pr36q")
+
+[node name="TextureButton3" type="TextureButton" parent="Panel"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 403.0
+offset_right = 1506.0
+offset_bottom = 804.0
+texture_normal = ExtResource("6_ukeui")
+texture_pressed = ExtResource("7_v5hkm")
+texture_hover = ExtResource("7_v5hkm")
+
+[node name="Master Volume" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 123.0
+offset_top = -117.0
+offset_right = 508.0
+offset_bottom = -101.0
+max_value = 1.5
+step = 0.001
+allow_greater = true
+allow_lesser = true
+script = ExtResource("9_t5oae")
+
+[node name="TextureButton" type="TextureButton" parent="Master Volume"]
+layout_mode = 0
+offset_left = -61.0
+offset_top = -74.0
+offset_right = 239.0
+offset_bottom = 26.0
+texture_normal = ExtResource("8_p8dug")
+
+[node name="Sound Effects" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 123.0
+offset_top = -63.0
+offset_right = 508.0
+offset_bottom = 4.0
+max_value = 1.5
+step = 0.001
+script = ExtResource("10_7msy5")
+
+[node name="TextureButton" type="TextureButton" parent="Sound Effects"]
+layout_mode = 0
+offset_left = -63.0
+offset_top = -48.0
+offset_right = 237.0
+offset_bottom = 52.0
+texture_normal = ExtResource("10_rdgqt")
+
+[node name="hover" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_hbiv5")
+bus = &"Sound Effects"
+
+[node name="click" type="AudioStreamPlayer2D" parent="hover"]
+stream = ExtResource("10_nvxiv")
+bus = &"Sound Effects"
+
+[connection signal="mouse_entered" from="Panel/TextureButton" to="." method="_on_texture_button_mouse_entered"]
+[connection signal="pressed" from="Panel/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="mouse_entered" from="Panel/TextureButton2" to="." method="_on_texture_button_2_mouse_entered"]
+[connection signal="pressed" from="Panel/TextureButton2" to="." method="_on_texture_button_2_pressed"]
+[connection signal="mouse_entered" from="Panel/TextureButton3" to="." method="_on_texture_button_3_mouse_entered"]
+[connection signal="pressed" from="Panel/TextureButton3" to="." method="_on_texture_button_3_pressed"]
+[connection signal="value_changed" from="Master Volume" to="." method="_on_master_volume_value_changed"]
+[connection signal="value_changed" from="Sound Effects" to="." method="_on_sound_effects_value_changed"]

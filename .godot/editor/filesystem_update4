@@ -1,0 +1,8 @@
+res://instructions.tscn
+res://main_menu.tscn
+res://Settings_controls.tscn
+res://settings.tscn
+res://mainmenu_bg.tscn
+res://sound_effects.gd
+res://settings.gd
+res://master_volume.gd
